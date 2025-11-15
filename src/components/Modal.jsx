@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import '../styles/Modal.css';
 
-export default function Modal() {
+export default function Modal({ onClose }) {
   const [isOpen, setIsOpen] = useState(true);
 
   const closeModal = () => {
     setIsOpen(false);
+    if (onClose) onClose();
   };
 
   return isOpen ? (
@@ -59,8 +60,12 @@ export default function Modal() {
         </div>
         
         <hr />
-        
+        <hr />
+
         <p>This game is inspired by <a href="https://www.nytimes.com/games/wordle/index.html">NYT Wordle</a></p>
+        <div style={{ marginTop: 12, textAlign: 'center' }}>
+          <button className="close-button" onClick={closeModal} style={{ position: 'static' }}>Start</button>
+        </div>
       </div>
     </div>
   ) : null;
